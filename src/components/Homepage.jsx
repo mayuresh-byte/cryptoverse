@@ -3,7 +3,7 @@ import millify from 'millify';
 import { Row, Col, Statistic, Typography } from 'antd'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Cryptos from './Cryptos';
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 const Homepage = () => {
@@ -47,7 +47,7 @@ const Homepage = () => {
             setGlobal(res.data);
         }).catch(error => console.log(error));
 
-        axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+        axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h")
             .then((res) => {
                 setCoins(res.data);
             })
@@ -79,20 +79,26 @@ const Homepage = () => {
             <div className="container">
                 <ul className="responsive-table">
                     <li className="table-header">
-                        <div className="col col-1">Job Id</div>
-                        <div className="col col-2">Customer Name</div>
-                        <div className="col col-3">Amount Due</div>
-                        <div className="col col-4">Payment Status</div>
+                        <div className="col col-1">Rank</div>
+                        <div className="col col-2">Crypto Name</div>
+                        <div className="col col-3">Crypto Price</div>
+                        <div className="col col-4">Movement</div>
                     </li>
 
-
-                    <li className="table-row">
-                        <div className="col col-1" data-label="Job Id">42235</div>
-                        <div className="col col-2" data-label="Customer Name">John Doe</div>
-                        <div className="col col-3" data-label="Amount">$350</div>
-                        <div className="col col-4" data-label="Payment Status">Pending</div>
-                    </li>
+                {Coins.map((coin)=>{
+                    if(coin.market_cap_rank <= 10)
+                    {
+                        return(
+                            <li className="table-row">
+                            <div className="col col-1" data-label="Rank">{coin.market_cap_rank}</div>
+                            <div className="col col-2" data-label="Crypto Name">{coin.name}</div>
+                            <div className="col col-3" data-label="Crypto Price">INR {coin.current_price}</div>
+                            <div className="col col-4" data-label="Movement" style={coin.price_change_percentage_24h < 0 ? {color:'red'}:{color:'green'}}>{parseFloat(coin.price_change_percentage_24h).toFixed(2)} % {coin.price_change_percentage_24h < 0 ?<CaretDownOutlined />:<CaretUpOutlined />} </div>
+                        </li>
+                        );
+                    }
                     
+                })} 
                 </ul>
             </div>
 

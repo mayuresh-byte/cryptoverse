@@ -353,6 +353,7 @@ width: 70%;
 }
 .search-crypto{
     margin: 20px auto 30px auto;
+    display: inline-block;
     width: 250px;
 }
 .crypto-card-container{
