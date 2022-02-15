@@ -1,46 +1,48 @@
-import React from 'react'
+import { React, useState } from 'react'
+import axios from 'axios';
+
 
 const News = () => {
 
-    const News = [
-    
-        {
-          "id": "binance",
-          "name": "Binance",
-          "year_established": 2017,
-          "country": "Cayman Islands",
-          "description": "",
-          "url": "https://www.binance.com/",
-          "image": "https://assets.coingecko.com/markets/images/52/small/binance.jpg?1519353250",
-          "has_trading_incentive": false,
-          "trust_score": 10,
-          "trust_score_rank": 1,
-          "trade_volume_24h_btc": 377631.7600546914,
-          "trade_volume_24h_btc_normalized": 377631.7600546914
-        },
-        {
-          "id": "okex",
-          "name": "OKX",
-          "year_established": 2013,
-          "country": "Belize",
-          "description": "",
-          "url": "https://www.okx.com",
-          "image": "https://assets.coingecko.com/markets/images/96/small/WeChat_Image_20220117220452.png?1642428377",
-          "has_trading_incentive": false,
-          "trust_score": 10,
-          "trust_score_rank": 2,
-          "trade_volume_24h_btc": 112480.9280724048,
-          "trade_volume_24h_btc_normalized": 112480.9280724048
-        },
-    ]
+  const [News, setNews] = useState([]);
+  const options = {
+    method: 'GET',
+    url: 'https://mboum-finance.p.rapidapi.com/ne/news',
+    headers: {
+      'x-rapidapi-host': 'mboum-finance.p.rapidapi.com',
+      'x-rapidapi-key': '131e9d6f89mshda5f14e124b072cp136dd3jsnd8349e5b43c3'
+    }
+  };
+  
+  axios.request(options).then(function (response) {
+    setNews(response.data);
+  }).catch(function (error) {
+    console.error(error);
+  });
 
-    console.log(News[1].name);
+  return (
+    <div>
+      {News.map((elem) => {
+        return (
+          <div style={{marginTop:50}}>
+          <div style={{ width: 100 }, { marginTop: 20 }, { border: 'grey 2px solid' }}>
+            <div style={{ marginTop: 15 }, { padding: 15 }}>
+              <h3>{elem.title}</h3>
+              <small>(source: {elem.source})</small>
+              <div>
+                <a className='NewsA' style={{color:'black'}} href={elem.link} target='_blank'><button style={{float:'right'}}>Read More</button></a>
+              </div>
+              <p>{elem.pubDate.replace('T', '.    .')}</p>
+              
+            </div>
 
-    return (
-        <div>
+          </div>
+          </div>
+        );
+      })}
 
-        </div>
-    )
+    </div>
+  )
 }
 
 export default News

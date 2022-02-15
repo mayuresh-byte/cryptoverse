@@ -297,6 +297,14 @@ a:hover{
     display: flex !important;
     justify-content: space-between !important;
 }
+
+.NewsA button{
+    cursor: pointer;
+    background-color: #396bc7; /* Green */
+    color: white;
+    padding: 3px 14px;
+}
+
 .news-title{
 width: 70%;
 }
