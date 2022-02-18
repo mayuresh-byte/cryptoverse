@@ -15,7 +15,7 @@ const CryptoDetails = () => {
   const [requestedCoin, setrequestedCoin] = useState(coinId)
   // const [timeperiod, setTimeperiod] = useState('7d');
   useEffect(() => {
-    axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&ids=${coinId}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h`)
+    axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinId}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h`)
       .then((res) => {
         setrequestedCoin(res.data);
       })
@@ -40,7 +40,7 @@ const CryptoDetails = () => {
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Current Price</h5>
-                          <span class="h2 font-weight-bold mb-0">350,897</span>
+                          <span class="h2 font-weight-bold mb-0">$ {(Number(requestedCoin[0].current_price))}</span>
                         </div>
                         <div class="col-auto">
                           <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -61,7 +61,7 @@ const CryptoDetails = () => {
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Market Cap</h5>
-                          <span class="h2 font-weight-bold mb-0">2,356</span>
+                          <span class="h2 font-weight-bold mb-0">{millify(Number(requestedCoin[0].market_cap))}</span>
                         </div>
                         <div class="col-auto">
                           <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -82,7 +82,7 @@ const CryptoDetails = () => {
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Total Volume</h5>
-                          <span class="h2 font-weight-bold mb-0">2,356</span>
+                          <span class="h2 font-weight-bold mb-0">{millify(Number(requestedCoin[0].total_volume))}</span>
                         </div>
                         <div class="col-auto">
                           <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -103,7 +103,7 @@ const CryptoDetails = () => {
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Total Supply</h5>
-                          <span class="h2 font-weight-bold mb-0">924</span>
+                          <span class="h2 font-weight-bold mb-0">{millify(Number(requestedCoin[0].total_supply))}</span>
                         </div>
                         <div class="col-auto">
                           <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -126,7 +126,7 @@ const CryptoDetails = () => {
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">All Time High</h5>
-                          <span class="h2 font-weight-bold mb-0">350,897</span>
+                          <span class="h2 font-weight-bold mb-0">$ {requestedCoin[0].ath}</span>
                         </div>
                         <div class="col-auto">
                           <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -147,7 +147,7 @@ const CryptoDetails = () => {
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">All Time Low</h5>
-                          <span class="h2 font-weight-bold mb-0">2,356</span>
+                          <span class="h2 font-weight-bold mb-0">$ {requestedCoin[0].atl}</span>
                         </div>
                         <div class="col-auto">
                           <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
