@@ -5,6 +5,7 @@ import { Card, Row, Col, Input } from 'antd';
 import { Typography } from 'antd';
 import axios from 'axios';
 import { CaretDownOutlined, CaretUpOutlined, SearchOutlined } from '@ant-design/icons';
+import CryptoDetails from './CryptoDetails';
 const { Search } = Input;
 const { Title } = Typography;
 
@@ -62,14 +63,14 @@ const Cryptos = () => {
             const url = url1.concat(url2, url3);
             return (
               <Col xs={24} sm={12} lg={6} className="gutter-row crypto-card">
-                <a href={url} target='_blank'>
-                  <Card key={coin.symbol} title={coin.name} extra={<a href="#"><img src={coin.image} className="crypto-image" /></a>} style={{ width: 240 }, { height: 240 }}>
+                <Link to={`/crypto/${coin.id}`}>
+                  <Card key={coin.symbol} title={coin.name} extra={<a href={url} target='_blank'><img src={coin.image} className="crypto-image" /></a>} style={{ width: 240 }, { height: 240 }}>
                     <p>Price: {coin.current_price} &#8377;</p>
                     <p>Market Cap: {millify(Number(coin.market_cap))}</p>
                     <p>Price Change : {parseFloat(coin.price_change_24h).toFixed(2)} </p>
                     <p style={coin.price_change_percentage_24h < 0 ? { color: 'red', fontWeight: 'bold' } : { color: '#00c746', fontWeight: 'bold' }}>{parseFloat(coin.price_change_percentage_24h).toFixed(2)} % {coin.price_change_percentage_24h < 0 ? <CaretDownOutlined /> : <CaretUpOutlined />}</p>
                   </Card>
-                </a>
+                </Link>
               </Col>
             );
           })}
