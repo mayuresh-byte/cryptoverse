@@ -150,13 +150,14 @@ a:hover{
 
 .coin-heading-container .coin-name{
     font-weight: 900;
-    color: var(--pink);
+    color: var(--red);
 }
 
 .coin-heading-container p{
-    font-size: 1rem;
-    opacity: 0.9;
+    font-size: 1.5rem;
+    opacity: 1;
     margin-bottom: 20px;
+    color:rgb(49, 1, 13);
 }
 
 .stats-container{

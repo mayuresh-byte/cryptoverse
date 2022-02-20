@@ -3,7 +3,7 @@ import HTMLReactParser from 'html-react-parser';
 import { useParams } from 'react-router-dom';
 import millify from 'millify';
 import { Col, Row, Typography, Select } from 'antd';
-import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined , CaretDownOutlined, CaretUpOutlined} from '@ant-design/icons';
 import axios from 'axios';
 import LineChart from 'react-linechart';
 const { Title, Text } = Typography;
@@ -27,11 +27,16 @@ const CryptoDetails = () => {
 
   return (
     <>
-
       <div class="main-content">
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
           <div class="container-fluid">
-            <h2 class="mb-5 text-white">{requestedCoin[0].name} Stats...</h2>
+          <Col className="coin-heading-container">
+        <Title level={2} className="coin-name">
+          {requestedCoin[0].name} ({requestedCoin[0].symbol}) Price
+        </Title>
+        <p >{requestedCoin[0].name} live price in US Dollar (USD). View value statistics, market cap and supply.</p>
+      </Col>
+            
             <div class="header-body">
               <div class="row">
                 <div class="col-xl-3 col-lg-6 pt-5">
@@ -40,17 +45,14 @@ const CryptoDetails = () => {
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Current Price</h5>
-                          <span class="h2 font-weight-bold mb-0">$ {(Number(requestedCoin[0].current_price))}</span>
+                          <span class="h2 font-weight-bold mb-0">$ {requestedCoin[0].current_price}</span>
                         </div>
-                        <div class="col-auto">
-                          <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                            <i class="fas fa-chart-bar"></i>
-                          </div>
-                        </div>
+                        
                       </div>
                       <p class="mt-3 mb-0 text-muted text-sm">
-                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                        <span class="text-nowrap">Since last month</span>
+                        
+                        <span class="text-danger mr-2"> {requestedCoin[0].price_change_percentage_24h < 0 ? <i class="fas fa-arrow-down"></i>: <i class="fa fa-arrow-up"></i>}  {parseFloat(requestedCoin[0].price_change_percentage_24h).toFixed(2)} %</span>
+                        <span class="text-nowrap">24h</span>
                       </p>
                     </div>
                   </div>
@@ -61,17 +63,13 @@ const CryptoDetails = () => {
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Market Cap</h5>
-                          <span class="h2 font-weight-bold mb-0">{millify(Number(requestedCoin[0].market_cap))}</span>
+                          <span class="h2 font-weight-bold mb-0">{(Number(requestedCoin[0].market_cap))}</span>
                         </div>
-                        <div class="col-auto">
-                          <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                            <i class="fas fa-chart-pie"></i>
-                          </div>
-                        </div>
+                        
                       </div>
                       <p class="mt-3 mb-0 text-muted text-sm">
-                        <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                        <span class="text-nowrap">Since last week</span>
+                        <span class="text-danger mr-2"> {requestedCoin[0].market_cap_change_percentage_24h < 0 ? <i class="fas fa-arrow-down"></i>: <i class="fa fa-arrow-up"></i>}  {parseFloat(requestedCoin[0].market_cap_change_percentage_24h).toFixed(2)} %</span>
+                        <span class="text-nowrap">24h</span>
                       </p>
                     </div>
                   </div>
@@ -82,17 +80,13 @@ const CryptoDetails = () => {
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Total Volume</h5>
-                          <span class="h2 font-weight-bold mb-0">{millify(Number(requestedCoin[0].total_volume))}</span>
+                          <span class="h2 font-weight-bold mb-0">{requestedCoin[0].total_volume}</span>
                         </div>
-                        <div class="col-auto">
-                          <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                            <i class="fas fa-chart-pie"></i>
-                          </div>
-                        </div>
+                        
                       </div>
                       <p class="mt-3 mb-0 text-muted text-sm">
-                        <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                        <span class="text-nowrap">Since last week</span>
+                        <span class="text-danger mr-2"> {requestedCoin[0].market_cap_change_percentage_24h < 0 ? <i class="fas fa-arrow-down"></i>: <i class="fa fa-arrow-up"></i>}  {parseFloat(requestedCoin[0].market_cap_change_percentage_24h).toFixed(2)} %</span>
+                        <span class="text-nowrap">24h</span>
                       </p>
                     </div>
                   </div>
@@ -103,17 +97,12 @@ const CryptoDetails = () => {
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Total Supply</h5>
-                          <span class="h2 font-weight-bold mb-0">{millify(Number(requestedCoin[0].total_supply))}</span>
+                          <span class="h2 font-weight-bold mb-0">{requestedCoin[0].total_supply}</span>
                         </div>
-                        <div class="col-auto">
-                          <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                            <i class="fas fa-users"></i>
-                          </div>
-                        </div>
+                        
                       </div>
                       <p class="mt-3 mb-0 text-muted text-sm">
-                        <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                        <span class="text-nowrap">Since yesterday</span>
+                        <span class="text-warning mr-2">{requestedCoin[0].total_supply}</span>
                       </p>
                     </div>
                   </div>
@@ -128,15 +117,11 @@ const CryptoDetails = () => {
                           <h5 class="card-title text-uppercase text-muted mb-0">All Time High</h5>
                           <span class="h2 font-weight-bold mb-0">$ {requestedCoin[0].ath}</span>
                         </div>
-                        <div class="col-auto">
-                          <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                            <i class="fas fa-chart-bar"></i>
-                          </div>
-                        </div>
+                        
                       </div>
                       <p class="mt-3 mb-0 text-muted text-sm">
-                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                        <span class="text-nowrap">Since last month</span>
+                        <span class="text-danger mr-2"> {requestedCoin[0].ath_change_percentage < 0 ? <i class="fas fa-arrow-down"></i>: <i class="fa fa-arrow-up"></i>}  {parseFloat(requestedCoin[0].ath_change_percentage).toFixed(2)} %</span>
+                        <span class="text-nowrap">24h</span>
                       </p>
                     </div>
                   </div>
@@ -149,15 +134,11 @@ const CryptoDetails = () => {
                           <h5 class="card-title text-uppercase text-muted mb-0">All Time Low</h5>
                           <span class="h2 font-weight-bold mb-0">$ {requestedCoin[0].atl}</span>
                         </div>
-                        <div class="col-auto">
-                          <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                            <i class="fas fa-chart-pie"></i>
-                          </div>
-                        </div>
+                        
                       </div>
                       <p class="mt-3 mb-0 text-muted text-sm">
-                        <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                        <span class="text-nowrap">Since last week</span>
+                        <span class="text-danger mr-2"> {requestedCoin[0].atl_change_percentage < 0 ? <i class="fas fa-arrow-down"></i>: <i class="fa fa-arrow-up"></i>}  {parseFloat(requestedCoin[0].atl_change_percentage).toFixed(2)} %</span>
+                        <span class="text-nowrap">24h</span>
                       </p>
                     </div>
                   </div>
