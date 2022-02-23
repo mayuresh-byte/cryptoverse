@@ -149,7 +149,7 @@ a:hover{
 }
 
 .coin-heading-container .coin-name{
-    font-weight: 900;
+    font-weight: 500;
     color: var(--red);
 }
 
@@ -388,7 +388,7 @@ width: 70%;
 }
 
 .crypto-home img{
-    height: 40px;
+    height: 30px;
     width: 30px;
 }
 
@@ -414,36 +414,69 @@ body {
   .responsive-table li {
     
       border-radius: 3px;
-      padding: 25px 30px;
+      padding: 12px 30px;
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 25px;
+      /* justify-content: space-between; */
+      margin-bottom: 7px;
     }
     .table-header {
       background-color: #95A5A6;
-      font-size: 14px;
+      font-size: 17px;
       text-transform: uppercase;
       letter-spacing: 0.03em;
+     
     }
     .table-row {
       background-color: #ffffff;
       box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
     }
     .col-1 {
-      flex-basis: 10%;
+      flex-basis: 25%;
     }
     .col-2 {
-      flex-basis: 20%;
+      flex-basis: 25%;
     }
     .col-3 {
-      flex-basis: 20%;
+      flex-basis: 25%;
     }
     .col-4 {
       flex-basis: 25%;
     }
-    .col-5 {
-        flex-basis: 25%;
-      }
+    
+.crypto-home-btn1{
+  background-color: #19ad14; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  
+}
+.crypto-home-btn1:hover
+{
+  background-color: #4ecf52; 
+}
+
+.crypto-home-btn2{
+  background-color: #140253; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  
+  cursor: pointer;
+}
+
+.crypto-home-btn2:hover
+{
+  background-color: #5045e9; 
+}
 
     @media all and (max-width: 767px) {
       .table-header {
@@ -995,11 +1028,11 @@ body {
       }
       
       .bg-gradient-primary {
-        background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
+        background: linear-gradient(87deg, #011b38 0, #011b38  100%) !important;
       }
       
       .bg-gradient-primary {
-        background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
+        background: linear-gradient(87deg, #011b38 0, #011b38 100%) !important;
       }
       
       @keyframes floating-lg {

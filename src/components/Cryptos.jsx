@@ -53,7 +53,7 @@ const Cryptos = () => {
         <input type="text" placeholder='Search cryptos...' onChange={(event) => setText(event.target.value.replace(/\s+/g, ''))} />
       </div>
 
-
+    
       <div style={{ marginTop: '20px' }}>
         <Row gutter={[16, 16]} className="crypto-card-container">
           {Coins.map((coin) => {
@@ -64,7 +64,7 @@ const Cryptos = () => {
             return (
               <Col xs={24} sm={12} lg={6} className="gutter-row crypto-card">
                 <Link to={`/crypto/${coin.id}`}>
-                  <Card key={coin.symbol} title={coin.name} extra={<a href={url} target='_blank'><img src={coin.image} className="crypto-image" /></a>} style={{ width: 240 }, { height: 240 }}>
+                  <Card key={coin.symbol} title={coin.name} extra={<a href={url} target='_blank'><img src={coin.image} className="crypto-image" /></a>} style={{ width: 240 }, { height: 260 }}>
                     <p>Price: {coin.current_price} &#8377;</p>
                     <p>Market Cap: {millify(Number(coin.market_cap))}</p>
                     <p>Price Change : {parseFloat(coin.price_change_24h).toFixed(2)} </p>

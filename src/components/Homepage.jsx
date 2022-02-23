@@ -79,11 +79,10 @@ const Homepage = () => {
             <div className="container">
                 <ul className="responsive-table">
                     <li className="table-header">
-                        <div className="col col-1">Rank</div>
-                        <div className="col col-1">Coin</div>
-                        <div className="col col-2">Crypto Name</div>
-                        <div className="col col-3">Crypto Price</div>
-                        <div className="col col-4">Movement</div>
+                        <div className="col col-1">Name</div>
+                        <div className="col col-2">Current Price</div>
+                        <div className="col col-3">Movement</div>
+                        <div className="col col-3">Trade option</div>
                     </li>
 
                 {Coins.map((coin)=>{
@@ -91,11 +90,10 @@ const Homepage = () => {
                     {
                         return(
                             <li className="table-row">
-                            <div className="col col-1" data-label="Rank">{coin.market_cap_rank}</div>
-                            <div className="col col-1 crypto-home" data-label="Rank">{<img src={coin.image} className="" />}</div>
-                            <div className="col col-2 " data-label="Crypto Name">{coin.name}</div>
-                            <div className="col col-3" data-label="Crypto Price">INR {coin.current_price}</div>
-                            <div className="col col-4" data-label="Movement" style={coin.price_change_percentage_24h < 0 ? {color:'red'}:{color:'green'}}>{parseFloat(coin.price_change_percentage_24h).toFixed(2)} % {coin.price_change_percentage_24h < 0 ?<CaretDownOutlined />:<CaretUpOutlined />} </div>
+                            <div className="col col-1 crypto-home" data-label="Rank">{<img src={coin.image} className="" />} {coin.name}</div>
+                            <div className="col col-2" data-label="Current Price">INR {coin.current_price}</div>
+                            <div className="col col-3" data-label="Movement" style={coin.price_change_percentage_24h < 0 ? {color:'red'}:{color:'green'}}>{parseFloat(coin.price_change_percentage_24h).toFixed(2)} % {coin.price_change_percentage_24h < 0 ?<CaretDownOutlined />:<CaretUpOutlined />} </div>
+                            <div className="col col-4 " data-label="Rank"><button class="crypto-home-btn1" style={{borderRadius:'7px'}}>Buy</button> <button class="crypto-home-btn2" style={{borderRadius:'7px'}}>Sell</button></div>
                         </li>
                         );
                     }

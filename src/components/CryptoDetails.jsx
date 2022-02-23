@@ -31,10 +31,11 @@ const CryptoDetails = () => {
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
           <div class="container-fluid">
           <Col className="coin-heading-container">
+            <img src={requestedCoin[0].image} alt="" />
         <Title level={2} className="coin-name">
-          {requestedCoin[0].name} ({requestedCoin[0].symbol}) Price
+          {requestedCoin[0].name} ({requestedCoin[0].symbol})
         </Title>
-        <p >{requestedCoin[0].name} live price in US Dollar (USD). View value statistics, market cap and supply.</p>
+        <p style={{color:'white'}}>{requestedCoin[0].name} live price in US Dollar (USD). View value statistics, market cap and supply.</p>
       </Col>
             
             <div class="header-body">
@@ -47,10 +48,8 @@ const CryptoDetails = () => {
                           <h5 class="card-title text-uppercase text-muted mb-0">Current Price</h5>
                           <span class="h2 font-weight-bold mb-0">$ {requestedCoin[0].current_price}</span>
                         </div>
-                        
                       </div>
-                      <p class="mt-3 mb-0 text-muted text-sm">
-                        
+                      <p class="mt-3 mb-0 text-muted text-sm"> 
                         <span class="text-danger mr-2"> {requestedCoin[0].price_change_percentage_24h < 0 ? <i class="fas fa-arrow-down"></i>: <i class="fa fa-arrow-up"></i>}  {parseFloat(requestedCoin[0].price_change_percentage_24h).toFixed(2)} %</span>
                         <span class="text-nowrap">24h</span>
                       </p>
