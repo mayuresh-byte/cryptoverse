@@ -5,7 +5,9 @@ import millify from 'millify';
 import { Col, Row, Typography, Select } from 'antd';
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined , CaretDownOutlined, CaretUpOutlined} from '@ant-design/icons';
 import axios from 'axios';
-import LineChart from 'react-linechart';
+
+import ChartsCryp from './ChartsCryp';
+
 const { Title, Text } = Typography;
 const { Option } = Select;
 
@@ -42,7 +44,7 @@ const CryptoDetails = () => {
               <div class="row">
                 <div class="col-xl-3 col-lg-6 pt-5">
                   <div class="card card-stats mb-4 mb-xl-0">
-                    <div class="card-body" style={{ height: 170 }}>
+                    <div class="card-body" style={{ height: 160 }}>
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Current Price</h5>
@@ -58,7 +60,7 @@ const CryptoDetails = () => {
                 </div>
                 <div class="col-xl-3 col-lg-6 pt-5">
                   <div class="card card-stats mb-4 mb-xl-0">
-                    <div class="card-body" style={{ height: 170 }}>
+                    <div class="card-body" style={{ height: 160 }}>
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Market Cap</h5>
@@ -75,7 +77,7 @@ const CryptoDetails = () => {
                 </div>
                 <div class="col-xl-3 col-lg-6 pt-5">
                   <div class="card card-stats mb-4 mb-xl-0">
-                    <div class="card-body" style={{ height: 170 }}>
+                    <div class="card-body" style={{ height: 160 }}>
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Total Volume</h5>
@@ -92,7 +94,7 @@ const CryptoDetails = () => {
                 </div>
                 <div class="col-xl-3 col-lg-6 pt-5">
                   <div class="card card-stats mb-4 mb-xl-0">
-                    <div class="card-body" style={{ height: 170 }}>
+                    <div class="card-body" style={{ height: 160 }}>
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">Total Supply</h5>
@@ -110,7 +112,7 @@ const CryptoDetails = () => {
               <div class="row" style={{alignContent:'center'}, {alignItems:'center'}, {justifyContent:'center'}}>
                 <div class="col-xl-3 col-lg-6 pt-5">
                   <div class="card card-stats mb-4 mb-xl-0">
-                    <div class="card-body" style={{ height: 170 }}>
+                    <div class="card-body" style={{ height: 160 }}>
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">All Time High</h5>
@@ -127,7 +129,7 @@ const CryptoDetails = () => {
                 </div>
                 <div class="col-xl-3 col-lg-6 pt-5">
                   <div class="card card-stats mb-4 mb-xl-0">
-                    <div class="card-body" style={{ height: 170 }}>
+                    <div class="card-body" style={{ height: 160 }}>
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-muted mb-0">All Time Low</h5>
@@ -144,6 +146,10 @@ const CryptoDetails = () => {
                 </div>
               </div>
             </div>
+            <div className="chart">
+                <ChartsCryp/>
+            </div>
+               
           </div>
         </div>
       </div>
