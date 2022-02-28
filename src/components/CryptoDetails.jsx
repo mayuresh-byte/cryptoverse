@@ -5,7 +5,7 @@ import millify from 'millify';
 import { Col, Row, Typography, Select } from 'antd';
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined , CaretDownOutlined, CaretUpOutlined} from '@ant-design/icons';
 import axios from 'axios';
-
+import { Line } from 'react-chartjs-2';
 import ChartsCryp from './ChartsCryp';
 
 const { Title, Text } = Typography;
@@ -15,6 +15,7 @@ const CryptoDetails = () => {
 
   const { coinId } = useParams();
   const [requestedCoin, setrequestedCoin] = useState(coinId)
+  const [HistoricData, setHistoricData] = useState([]);
   // const [timeperiod, setTimeperiod] = useState('7d');
   useEffect(() => {
     axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinId}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h`)
@@ -24,8 +25,16 @@ const CryptoDetails = () => {
 
   }, [])
 
-  // console.log(requestedCoin);
+  
+    
+    useEffect(() => {
+        axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=365`)
+            .then((res) => {
+                setHistoricData(res.data.prices);
+            })
+    }, [])
 
+  console.log(HistoricData);
 
   return (
     <>
@@ -147,7 +156,36 @@ const CryptoDetails = () => {
               </div>
             </div>
             <div className="chart">
-                <ChartsCryp/>
+                {/* <ChartsCryp coinn={coinId}/> */}
+              { !HistoricData ? 'loading': (
+                <Line
+              data={{
+                labels: HistoricData.map((coin) => {
+                  let date = new Date(coin[0]);
+                  let time =
+                    date.getHours() > 12
+                      ? `${date.getHours() - 12}:${date.getMinutes()} PM`
+                      : `${date.getHours()}:${date.getMinutes()} AM`;
+                  return  date.toLocaleDateString();
+                }),
+
+                datasets: [
+                  {
+                    data: HistoricData.map((coin) => coin[1]),
+                    label: `Price ( Past 365 Days ) in usd`,
+                    borderColor: "#EEBC1D",
+                  },
+                ],
+              }}
+              options={{
+                elements: {
+                  point: {
+                    radius: 1,
+                  },
+                },
+              }}
+            />
+            )} 
             </div>
                
           </div>
